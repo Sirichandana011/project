@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Information</title>
+</head>
+<body>
+
+  <h1>Student Information</h1>
+  <p>Enter Student ID:</p>
+  <input type="text" id="studentId" placeholder="Enter Student ID">
+  <button onclick="getStudentInfo()">Submit</button>
+
+  <h2>Student Details:</h2>
+  <p id="studentName"></p>
+  <p id="studentPhone"></p>
+  <p id="studentHallTicket"></p>
+
+  <script>
+    // Load XML data
+    function loadXML() {
+      const parser = new DOMParser();
+      const xmlString = `
+        <students>
+          <student id="1">
+            <name>John Doe</name>
+            <phone>123-456-7890</phone>
+            <hallticket>HT1234</hallticket>
+          </student>
+          <student id="2">
+            <name>Jane Smith</name>
+            <phone>987-654-3210</phone>
+            <hallticket>HT5678</hallticket>
+          </student>
+          <student id="3">
+            <name>Mark Johnson</name>
+            <phone>555-666-7777</phone>
+            <hallticket>HT9101</hallticket>
+          </student>
+        </students>
+      `;
+      return parser.parseFromString(xmlString, "application/xml");
+    }
+
+    // Function to get student info by ID
+    function getStudentInfo() {
+      const studentId = document.getElementById("studentId").value;
+      const xmlDoc = loadXML();
+      const students = xmlDoc.getElementsByTagName("student");
+      let found = false;
+
+      // Search through the students and match the ID
+      for (let i = 0; i < students.length; i++) {
+        const student = students[i];
+        if (student.getAttribute("id") === studentId) {
+          document.getElementById("studentName").textContent = "Name: " + student.getElementsByTagName("name")[0].textContent;
+          document.getElementById("studentPhone").textContent = "Phone: " + student.getElementsByTagName("phone")[0].textContent;
+          document.getElementById("studentHallTicket").textContent = "Hall Ticket: " + student.getElementsByTagName("hallticket")[0].textContent;
+          found = true;
+          break;
+        }
+      }
+
+      // If student not found
+      if (!found) {
+        document.getElementById("studentName").textContent = "Student not found.";
+        document.getElementById("studentPhone").textContent = "";
+        document.getElementById("studentHallTicket").textContent = "";
+      }
+    }
+  </script>
+
+</body>
+</html>
