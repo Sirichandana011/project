@@ -1,37 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>To Do List</title>
-    <link rel = "icon" href = "images/icon.png" type = "image/x-icon">
-    <!-- Font Awesome Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-    />
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <div id="new-task">
-        <input type="text" placeholder="Enter The Task Here..." />
-        <button id="push">Add</button>
-      </div>
-      <div id="tasks"></div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone Versions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+        .iphone-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .iphone-card img {
+            width: 150px;
+            height: auto;
+            margin-right: 20px;
+            border-radius: 10px;
+        }
+        .iphone-card h2 {
+            margin: 0;
+            color: #333;
+        }
+        .iphone-card p {
+            margin: 10px 0;
+            font-size: 14px;
+            color: #666;
+        }
+        .features-list {
+            list-style: none;
+            padding: 0;
+        }
+        .features-list li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="iphone-container">
+        <!-- iPhone models will be displayed here -->
     </div>
-    <div class="social-icons">
-        <a href="https://instagram.com/arindxl?igshid=MzRlODBiNWFlZA==" target="_blank"><img src="images/instagram.png" alt="instagram"></a>
-        <a href="https://github.com/arindal1/To-Do-List-WebApp" target="_blank"><img src="images/github.png" alt="github"></a>
-        <a href="https://www.linkedin.com/in/arindalchar/" target="_blank"><img src="images/linkedin.png" alt="linkedin"></a>
-        <!-- Add more social icons as needed -->
-      </div>
-    <!-- Script -->
-    <script src="script.js"></script>
-  </body>
+
+    <script>
+        const iphoneData = {
+            "iphones": [
+                {
+                    "name": "iPhone 12",
+                    "release_date": "October 23, 2020",
+                    "features": [
+                        "6.1-inch display",
+                        "A14 Bionic chip",
+                        "5G capable",
+                        "Dual 12MP camera"
+                    ],
+                    "image": "iphone12.jpg"
+                },
+                {
+                    "name": "iPhone 13",
+                    "release_date": "September 24, 2021",
+                    "features": [
+                        "6.1-inch display",
+                        "A15 Bionic chip",
+                        "5G capable",
+                        "Dual 12MP camera",
+                        "Improved battery life"
+                    ],
+                    "image": "iphone13.jpg"
+                },
+                {
+                    "name": "iPhone 14",
+                    "release_date": "September 16, 2022",
+                    "features": [
+                        "6.1-inch display",
+                        "A15 Bionic chip",
+                        "5G capable",
+                        "Dual 12MP camera",
+                        "Improved low-light performance"
+                    ],
+                    "image": "iphone14.jpg"
+                },
+                {
+                    "name": "iPhone 15",
+                    "release_date": "September 22, 2023",
+                    "features": [
+                        "6.1-inch display",
+                        "A16 Bionic chip",
+                        "USB-C charging port",
+                        "48MP main camera"
+                    ],
+                    "image": "iphone15.jpg"
+                }
+            ]
+        };
+
+        const container = document.getElementById('iphone-container');
+
+        iphoneData.iphones.forEach(iphone => {
+            const iphoneCard = document.createElement('div');
+            iphoneCard.classList.add('iphone-card');
+
+            iphoneCard.innerHTML = `
+                <img src="${iphone.image}" alt="${iphone.name}">
+                <div>
+                    <h2>${iphone.name}</h2>
+                    <p><strong>Release Date:</strong> ${iphone.release_date}</p>
+                    <p><strong>Features:</strong></p>
+                    <ul class="features-list">
+                        ${iphone.features.map(feature => `<li>${feature}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+            
+            container.appendChild(iphoneCard);
+        });
+    </script>
+
+</body>
 </html>
