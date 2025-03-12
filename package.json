@@ -1,0 +1,16 @@
+{
+  "name": "siri_1",
+  "version": "1.0.0",
+  "description": "siri,chandana,sony",
+  "main": "app.js",
+  "scripts": {
+    "test": "\t"
+  },
+  "keywords": [
+    "siri",
+    "chandana",
+    "sony"
+  ],
+  "author": "sirichandana",
+  "license": "ISC"
+}
